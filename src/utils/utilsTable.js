@@ -14,20 +14,20 @@ const getColumnasListadoEmpleados = () => {
       accessor: "apellido",
     },
     {
-      Header: "Hora",
-      accessor: "horarioDesde",
+      Header: "Observacion",
+      accessor: "observacion",
     },
     {
-      Header: "Firma",
-      accessor: "firmaEntrada",
+      Header: "Hora desde",
+      accessor: "horario_laboral_desde",
     },
     {
-      Header: "Hora",
-      accessor: "horarioHasta",
+      Header: "Hora hasta",
+      accessor: "horario_laboral_hasta",
     },
     {
-      Header: "Firma",
-      accessor: "firmaSalida",
+      Header: "Fecha de Ingreso",
+      accessor: "fecha_ingreso",
     },
   ];
 };

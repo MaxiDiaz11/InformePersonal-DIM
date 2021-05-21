@@ -4,6 +4,7 @@ import consultarAPI from "././utils/utils";
 
 function App() {
   const [empleados, setEmpleados] = useState([]);
+  const [gruposInformeDiario, setGruposInformeDiario] = useState([]);
 
   const obtenerEmpleados = () => {
     const resultado = consultarAPI(
@@ -12,13 +13,25 @@ function App() {
     resultado.then((r) => setEmpleados(r.data.empleado));
   };
 
+  const obtenerInformeDiario = () => {
+    const resultado = consultarAPI(
+      "http://127.0.0.1:3000/informeDiario/generarInforme"
+    );
+    console.log(resultado);
+    resultado.then((r) => setGruposInformeDiario(r.data.grupos));
+  };
+
   useEffect(() => {
     obtenerEmpleados();
+    obtenerInformeDiario();
   }, []);
 
   return (
     <div className="App">
-      <Inicio empleados={empleados}></Inicio>
+      <Inicio
+        empleados={empleados}
+        gruposInforme={gruposInformeDiario}
+      ></Inicio>
     </div>
   );
 }

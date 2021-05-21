@@ -9,7 +9,7 @@ import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import "../css/tabla.css";
 
-const Tabla = ({ columns, data }) => {
+const Tabla = ({ columns, data, tipoTabla, titulo, subtitulo }) => {
   const useStyles = makeStyles({
     table: {
       minWidth: 650,
@@ -22,7 +22,11 @@ const Tabla = ({ columns, data }) => {
 
   return (
     <div>
-      {nombre ? <h1 className="my-3">a</h1> : null}
+      {titulo ? <h1 className="mt-3 text-center display-5">{titulo}</h1> : null}
+      {subtitulo ? (
+        <h2 className="mt-5 text-center display-5">{subtitulo}</h2>
+      ) : null}
+
       <TableContainer component={Paper}>
         <Table
           className={classes.table}
@@ -37,20 +41,39 @@ const Tabla = ({ columns, data }) => {
             </TableRow>
           </TableHead>
           <TableBody>
-            {/* {data.map((fila) => (
+            {tipoTabla === "listadoEmpleados"
+              ? data.map((fila) => (
                   <TableRow key={Math.random() * (1000 - 1) + 1}>
                     {/* <TableCell component="th" scope="fila">
-                    {fila.nro_afiliado}
-                  </TableCell>  
+                      {fila.nro_afiliado}
+                    </TableCell> */}
+                    <TableCell align="center"> {fila.nro_afiliado}</TableCell>
+                    <TableCell align="center">{fila.nombre}</TableCell>
+                    <TableCell align="center">{fila.apellido}</TableCell>
+                    <TableCell align="center">{fila.observacion}</TableCell>
+                    <TableCell align="center">
+                      {fila.horario_laboral_desde}
+                    </TableCell>
+                    <TableCell align="center">
+                      {fila.horario_laboral_hasta}
+                    </TableCell>
+                    <TableCell align="center">{fila.fecha_ingreso}</TableCell>
+                  </TableRow>
+                ))
+              : data.map((fila) => (
+                  <TableRow key={Math.random() * (1000 - 1) + 1}>
+                    {/* <TableCell component="th" scope="fila">
+                      {fila.nro_afiliado}
+                    </TableCell> */}
                     <TableCell align="center"> {fila.nro_afiliado}</TableCell>
                     <TableCell align="center">{fila.nombre}</TableCell>
                     <TableCell align="center">{fila.apellido}</TableCell>
                     <TableCell align="center"></TableCell>
                     <TableCell align="center"></TableCell>
                     <TableCell align="center"></TableCell>
-                    <TableCell align="center"></TableCell> 
+                    <TableCell align="center"></TableCell>
                   </TableRow>
-                ))}*/}
+                ))}
           </TableBody>
         </Table>
       </TableContainer>

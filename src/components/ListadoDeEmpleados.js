@@ -1,9 +1,19 @@
-import React from 'react';
+import React, { Fragment } from "react";
+import { getColumnasListadoEmpleados } from "../utils/utilsTable";
+import Tabla from "./Tabla";
+import Titulo from "../components/Titulo";
 
-const ListadoDeEmpleados = () => {
-    return ( 
-        <h1>Listado de empleados</h1>
-     );
-}
- 
+const ListadoDeEmpleados = ({ empleados, titulo }) => {
+  console.log(empleados);
+  const columnas = getColumnasListadoEmpleados();
+  console.log(columnas);
+
+  return (
+    <Fragment>
+      <Titulo titulo={titulo} />
+      <Tabla columns={columnas} data={empleados} tipoTabla="listadoEmpleados" />
+    </Fragment>
+  );
+};
+
 export default ListadoDeEmpleados;
