@@ -11,7 +11,7 @@ const ListadoDeEmpleados = ({ empleados, titulo }) => {
   return (
     <Fragment>
       <Titulo titulo={titulo} />
-      <Tabla columns={columnas} data={empleados} tipoTabla="listadoEmpleados" />
+      <Tabla columns={columnas} data={empleados} tipoTabla="listadoEmpleados" pageSize={5}/>
     </Fragment>
   );
 };

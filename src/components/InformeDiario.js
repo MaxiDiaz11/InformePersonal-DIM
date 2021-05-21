@@ -5,6 +5,7 @@ import {
   getFilasInformeDiario,
 } from "../utils/utilsTable";
 import Tabla from "./Tabla";
+import TablaSubGrupo from "./TablaSubGrupo";
 
 const InformeDiario = ({ titulo, gruposInforme }) => {
   console.log("informe diario");
@@ -39,6 +40,40 @@ const InformeDiario = ({ titulo, gruposInforme }) => {
             return (
               <Tabla columns={columnas} data={filas} titulo={nombreSubGrupo} />
             );
+          }
+
+          if (g.subgrupo.length > 1) {
+            nombreGrupo = g.nombre;
+            console.log(nombreGrupo);
+
+            for (let i = 0; i < g.subgrupo.length; i++) {
+
+              nombreSubGrupo = g.subgrupo[i].nombre_subgrupo;
+              console.log(nombreSubGrupo);
+
+              let columnas = getColumnasInformeDiario(
+                g.tipo_template,
+                g.subgrupo[i].tipo_template
+              );
+
+              let filas = getFilasInformeDiario(g, g.subgrupo[i]);
+
+              console.log(columnas);
+              console.log(filas);
+
+               <TablaSubGrupo/>
+
+              // let tabla = getTable(columnas, filas, nombreSubGrupo, nombreGrupo);
+
+              //   return (
+              //     <Tabla
+              //       columns={columnas}
+              //       data={filas}
+              //       titulo={nombreSubGrupo}
+              //       nombre={nombreGrupo}
+              //     />
+              //   );
+            }
           }
         }
       })}
