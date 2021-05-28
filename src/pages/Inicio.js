@@ -6,16 +6,14 @@ import InformeDiario from "../components/InformeDiario";
 
 const Inicio = ({ empleados, gruposInforme }) => {
 
-  console.log(gruposInforme);
-
   const [viewEmpleados, setViewEmpleados] = useState(false);
   const [viewInformeDiario, setViewInformeDiario] = useState(false);
   const [viewPrincipal, setViewPrincipal] = useState(true);
 
   const Contenedor = styled.div`
-    background: #b9b7b7;
+    background: #5eb86a;
     min-height: 100vh;
-    border-right: 1px solid #9b9a9a;
+    border-right: 0.5px solid gray;
   `;
 
   const Boton = styled.button`
@@ -25,7 +23,12 @@ const Inicio = ({ empleados, gruposInforme }) => {
     border-radius: 10px;
     font-size: 20px;
     background-color: white;
+    word-wrap: break-word;
   `;
+
+  const BtnContenedor = styled.div`
+  margin-top: 150px;
+  `
 
   const getInicio = () => {
     setViewEmpleados(false);
@@ -46,10 +49,12 @@ const Inicio = ({ empleados, gruposInforme }) => {
   return (
     <div className="container-fluid">
       <div className="row">
-        <Contenedor className="col-3 d-flex flex-column justify-content-center">
-          <Boton onClick={getInicio}>Inicio</Boton>
-          <Boton onClick={getTableInforme}> Informe diario</Boton>
-          <Boton onClick={getTableEmpleado}>Listado de empleados</Boton>
+        <Contenedor className="col-3 ">
+          <BtnContenedor className=" d-flex flex-column justify-content-start">
+            <Boton onClick={getInicio}>Inicio</Boton>
+            <Boton onClick={getTableInforme}> Informe diario</Boton>
+            <Boton onClick={getTableEmpleado}>Listado de empleados</Boton>
+          </BtnContenedor>
         </Contenedor>
         <div className="col-9">
           {viewEmpleados ? (
@@ -58,7 +63,7 @@ const Inicio = ({ empleados, gruposInforme }) => {
               titulo="Listado de Empleados"
             />
           ) : null}
-          {viewInformeDiario ? <InformeDiario titulo="Informe diario" gruposInforme={gruposInforme}/> : null}
+          {viewInformeDiario ? <InformeDiario titulo="Informe diario" gruposInforme={gruposInforme} /> : null}
           {viewPrincipal ? (
             <Principal titulo="Gestion de empleados"></Principal>
           ) : null}

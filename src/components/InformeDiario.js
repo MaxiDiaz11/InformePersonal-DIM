@@ -10,20 +10,18 @@ import TablaSubGrupo from "./TablaSubGrupo";
 const InformeDiario = ({ titulo, gruposInforme }) => {
   console.log("informe diario");
   console.log(gruposInforme);
+
   return (
     <Fragment>
       <Titulo titulo={titulo} />
 
       {gruposInforme.grupo.map((g) => {
         let nombreGrupo, nombreSubGrupo;
-        console.log(g);
         if (g.subgrupo === undefined) {
           nombreGrupo = g.nombre;
           let columnas = getColumnasInformeDiario(g.tipo_template);
           let filas = getFilasInformeDiario(g);
 
-          console.log(columnas);
-          console.log(filas);
           return (
             <Tabla
               columns={columnas}
@@ -44,36 +42,12 @@ const InformeDiario = ({ titulo, gruposInforme }) => {
 
           if (g.subgrupo.length > 1) {
             nombreGrupo = g.nombre;
-            console.log(nombreGrupo);
-
-            for (let i = 0; i < g.subgrupo.length; i++) {
-
-              nombreSubGrupo = g.subgrupo[i].nombre_subgrupo;
-              console.log(nombreSubGrupo);
-
-              let columnas = getColumnasInformeDiario(
-                g.tipo_template,
-                g.subgrupo[i].tipo_template
-              );
-
-              let filas = getFilasInformeDiario(g, g.subgrupo[i]);
-
-              console.log(columnas);
-              console.log(filas);
-
-               <TablaSubGrupo/>
-
-              // let tabla = getTable(columnas, filas, nombreSubGrupo, nombreGrupo);
-
-              //   return (
-              //     <Tabla
-              //       columns={columnas}
-              //       data={filas}
-              //       titulo={nombreSubGrupo}
-              //       nombre={nombreGrupo}
-              //     />
-              //   );
-            }
+            return (
+              <Fragment>
+                <h2 className="mt-4 text-center ">{nombreGrupo}</h2>
+                <TablaSubGrupo grupo={g} subgrupo={g.subgrupo} nombreGrupo={nombreGrupo} />
+              </Fragment>
+            )
           }
         }
       })}

@@ -17,7 +17,6 @@ function App() {
     const resultado = consultarAPI(
       "http://127.0.0.1:3000/informeDiario/generarInforme"
     );
-    console.log(resultado);
     resultado.then((r) => setGruposInformeDiario(r.data.grupos));
   };
 
